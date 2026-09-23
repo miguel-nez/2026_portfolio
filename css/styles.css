@@ -38,7 +38,7 @@ body {
 }
 
 .sidebar-name {
-  font-size: 0.875rem;
+  font-size: 1.25rem;
   font-weight: 500;
   color: var(--ink);
   padding: 0 10px;
@@ -47,7 +47,7 @@ body {
 }
 
 .sidebar-role {
-  font-size: 0.75rem;
+  font-size: 0.85rem;
   font-weight: 300;
   color: var(--ink);
   padding: 0 10px;
@@ -64,7 +64,7 @@ body {
 }
 
 .sidebar-nav a {
-  font-size: 0.8125rem;
+  font-size: 1rem;
   font-weight: 400;
   color: var(--ink);
   text-decoration: none;
@@ -84,7 +84,7 @@ body {
 }
 
 .sidebar-contact a {
-  font-size: 0.8125rem;
+  font-size: 1rem;
   font-weight: 300;
   color: var(--ink);
   text-decoration: none;
@@ -104,7 +104,7 @@ body {
   color: var(--ink);
 }
 
-.cv-link { font-size: 12px !important; }
+.cv-link { font-size: 1rem }
 
 /* ── MAIN ── */
 .main { margin-left: var(--sidebar-w); }
@@ -131,7 +131,7 @@ body {
   color: var(--ink);
   margin-bottom: 1.5rem;
   padding: 0 10px;
-  max-width: 700px;
+  max-width: 1000px;
   letter-spacing: -0.02em;
 }
 
@@ -308,6 +308,7 @@ body {
   grid-template-columns: 1fr 1fr;
   gap: 2rem;
   align-items: start;
+  max-width: 1200px;
 }
 
 .why-grid {
@@ -798,6 +799,15 @@ footer > span {
 
 
 /* ── RESPONSIVE ── */
+
+/* ── MID: stack project cards, keep the sidebar ── */
+@media (max-width: 1220px) {
+  .project-card { flex-direction: column; }
+  .project-text { flex: none; width: 100%; }
+  .project-right { flex: none; width: 100%; }
+}
+
+/* ── MID: stack project cards, sidebar moves to top ── */
 @media (max-width: 799px) {
 
   /* Sidebar becomes a top bar */
