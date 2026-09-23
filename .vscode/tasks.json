@@ -1,0 +1,19 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Open with Live Server",
+            "type": "shell",
+            "command": "open",
+            "args": [
+                "http://localhost:5500"
+            ],
+            "presentation": {
+                "reveal": "silent"
+            },
+            "runOptions": {
+                "runOn": "folderOpen"
+            }
+        }
+    ]
+}

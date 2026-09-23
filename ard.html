@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ARD Mediathek — Miguel Núñez</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+<!-- SIDEBAR -->
+<aside class="sidebar">
+  <a href="index.html" style="text-decoration:none">
+    <p class="sidebar-name">Miguel Núñez</p>
+    <p class="sidebar-role">Product Designer</p>
+  </a>
+
+  <nav class="sidebar-nav">
+    <a href="index.html#work">Work</a>
+    <div class="nav-projects">
+      <a href="ard.html" class="active">ARD Mediathek</a>
+      <a href="sds.html">Solid Design System</a>
+      <a href="tracker.html">Dog Tracker app</a>
+      <a href="accessibility.html">Accessibility task force</a>
+    </div>
+    <a href="index.html#about">About</a>
+  </nav>
+
+  <div class="sidebar-contact">
+    <a href="mailto:miguelxnxn@gmail.com">Email</a>
+    <a href="https://www.linkedin.com/in/miguel-nunez-nunez/" target="_blank" rel="noopener">LinkedIn</a>
+    <a href="cv.pdf" class="cv-link">CV</a>
+  </div>
+</aside>
+
+<!-- MAIN -->
+<main class="main">
+  <div class="cs-content">
+
+    <div class="cs-header fade">
+      <p class="cs-eyebrow">AI proof of concept · public broadcasting · 3–4 months</p>
+      <h1 class="cs-title">ARD Mediathek —<br><strong>ARD Mediathek / identifying moods and motivations and weighing them with AI</strong></h1>
+      <p class="cs-subtitle">Two AI toolchains, eight videos, eighty runs. And a question we kept coming back to: when the thing you're measuring is subjective, what counts as correct?</p>
+    </div>
+
+    <div class="cs-meta-row fade">
+      <div class="cs-meta-item"><p class="cs-meta-label">My role</p><p class="cs-meta-value">Product designer</p></div>
+      <div class="cs-meta-item"><p class="cs-meta-label">Ownership</p><p class="cs-meta-value">Google AI Studio toolchain · analysis · metrics · insights</p></div>
+      <div class="cs-meta-item"><p class="cs-meta-label">Team</p><p class="cs-meta-value">One senior designer · one project manager · a developer on the other toolchain</p></div>
+      <div class="cs-meta-item"><p class="cs-meta-label">Duration</p><p class="cs-meta-value">3–4 months</p></div>
+    </div>
+
+    <div class="cs-section fade">
+      <p class="cs-section-label">The problem</p>
+      <p class="cs-body">ARD produces more than 2,000 hours of content a day. Every video gets 23 editorial metadata fields, filled in by hand by editorial teams whose main job is, understandably, making programmes. With that volume and no shared definition of a word like <em>quirky</em>, the tagging drifted. Not through carelessness. Nobody had ever been given a common vocabulary to work from.</p>
+      <p class="cs-body">The knock-on effects were concrete: the recommendation engine had thin data, younger viewers struggled to find things, and partner platforms needed the same information in five other formats.</p>
+      <p class="cs-body">So the brief was quite specific. Could an AI generate two of the hardest fields, Mood and Consumption Motivation, well enough to take the job off people's desks?</p>
+
+      <div class="cs-stats">
+        <div class="cs-stat"><p class="cs-stat-num">2,000h</p><p class="cs-stat-label">of ARD content produced per day</p></div>
+        <div class="cs-stat"><p class="cs-stat-num">23</p><p class="cs-stat-label">editorial metadata fields per video, and growing</p></div>
+        <div class="cs-stat"><p class="cs-stat-num">2</p><p class="cs-stat-label">subjective fields tested: Mood and Consumption Motivation</p></div>
+      </div>
+    </div>
+
+    <div class="cs-section fade">
+      <p class="cs-section-label">What made this hard</p>
+      <p class="cs-body">Mood is subjective. Two people watch the same film, one says <em>melancholic</em>, the other says <em>dramatic</em>, and they're both right. Before we could test anything we needed a vocabulary that could be tested against. So the first weeks went into clusters and sub-clusters, decision trees, and a reference document we called the Mood-Bible for the cases where two terms sat too close together. My colleague had already started this before I joined; I came in near the end of it and mostly helped tighten definitions.</p>
+      <p class="cs-body">We also had to think about how a language model fails. It adds terms that aren't on the list. It writes a convincing reason for a guess. It answers from what it already knows about a well-known show instead of from the video in front of it. Each of those became a rule in the prompt.</p>
+    </div>
+
+    <div class="cs-section fade">
+      <p class="cs-section-label">Approach</p>
+
+      <div class="cs-phase"><p class="cs-phase-num">01</p><div class="cs-phase-body">
+        <p><strong>Two toolchains, side by side.</strong> One route sent the video through Azure Video Indexer for emotions, transcript, labels and content-moderation signals, then handed that output to Claude to interpret. The other used Google AI Studio with Gemini, which takes video, audio and text in a single pass. My colleague ran Azure with a developer's support. I ran Google on my own, mainly because AI Studio doesn't require you to know much about cloud APIs, and I didn't.</p>
+      </div></div>
+
+      <div class="cs-phase"><p class="cs-phase-num">02</p><div class="cs-phase-body">
+        <p><strong>The prompt.</strong> Four steps. Find candidate moods, score each against the decision tree, rank them, then check your own output for duplicates and mismatches. The Mood-Bible went in as reference. Eight videos, five runs each, on both toolchains.</p>
+      </div></div>
+
+      <div class="cs-image fade"></div>
+      <p class="cs-image-caption fade">↑ Prompt structure, the four-step scoring workflow from the system prompt</p>
+
+      <div class="cs-phase"><p class="cs-phase-num">03</p><div class="cs-phase-body">
+        <p><strong>The Python detour.</strong> Eighty runs across two toolchains is more arithmetic than a chat assistant handles reliably, we tried a few and the results kept shifting. So I wrote a script instead, with AI helping me through the parts I didn't know, and defined three measures: does it pick the same tags each run, does it score them similarly, does it rank them the same way. I'd watched all eight videos and sat on the human panel myself, so I had a rough feel for when a number was wrong. The first two versions produced numbers that were. The third didn't.</p>
+      </div></div>
+
+      <div class="cs-phase"><p class="cs-phase-num">04</p><div class="cs-phase-body">
+        <p><strong>The human control group.</strong> Eight colleagues tagged the same videos in the same format. We planned to treat their answers as the ground truth.</p>
+      </div></div>
+    </div>
+
+    <div class="cs-section fade">
+      <p class="cs-section-label">What we found</p>
+      <p class="cs-body">Both toolchains cleared the thresholds we'd set, above 91% on intensity stability across all eight videos. The humans, working from the same list but without the decision trees, came in between 36 and 54% at cluster level. Which says less about the panel and more about the fact that we'd written the definitions for the machine and hadn't given people the same support.</p>
+
+      <div class="cs-image fade"></div>
+      <p class="cs-image-caption fade">↑ Mood presence consistency, AI toolchains compared across the eight test videos</p>
+
+      <p class="cs-body">Three things stood out.</p>
+
+      <div class="cs-findings fade">
+        <div class="cs-finding"><p class="cs-finding-label">Clusters held</p><p>The AI would drift between neighbouring tags but stay inside the cluster, so mapping search and recommendations to clusters would make the drift irrelevant.</p></div>
+        <div class="cs-finding"><p class="cs-finding-label">Tatort scored lowest</p><p>On both sides. It's a Sunday-evening ritual for a lot of people before it's a crime drama, and that context has to be supplied, it can't be inferred from the footage.</p></div>
+        <div class="cs-finding"><p class="cs-finding-label">Format matters</p><p>Magazine-style shows with several segments did better with Google's multimodal read than with the transcript-led Azure route. The right toolchain depends on the content.</p></div>
+      </div>
+
+      <p class="cs-body">And one finding that changed the brief: if people are less consistent than the model, "accurate" can't mean "matches the people". Someone has to decide what correct looks like first. That became a requirements list for whoever builds the MVP.</p>
+    </div>
+
+    <div class="cs-section fade">
+      <p class="cs-section-label">What the client said</p>
+      <p class="cs-body">After the PoC, interviews were run across three departments at ARD and WDR, plus a couple by email with ARD's programme directorate and ZDF Streaming.</p>
+      <div class="cs-quote"><p>"Wann seid ihr fertig? Ich könnte das gebrauchen."</p><p class="cs-quote-source">Interview participant, ARD stakeholder interviews</p></div>
+      <div class="cs-quote"><p>"Verschlagwortung sollte 100% autonom laufen, da kann man mit Fehlern umgehen."</p><p class="cs-quote-source">Interview participant, ARD stakeholder interviews</p></div>
+    </div>
+
+    <div class="cs-section fade">
+      <p class="cs-section-label">Outcome</p>
+      <div class="cs-outcomes">
+        <div class="cs-outcome"><p class="cs-outcome-num">80</p><p class="cs-outcome-label">AI runs analysed across 2 toolchains</p></div>
+        <div class="cs-outcome"><p class="cs-outcome-num">5+</p><p class="cs-outcome-label">stakeholder interviews across ARD, WDR and ZDF</p></div>
+        <div class="cs-outcome"><p class="cs-outcome-num">MVP</p><p class="cs-outcome-label">project moved on to planning and requirements</p></div>
+      </div>
+      <p class="cs-body">The PoC passed. The two toolchains landed close together, each better at a different kind of content, and the findings went into a spec for the next phase. I left before the MVP started. I'm told it did.</p>
+      <div class="cs-mvp">
+        <span class="cs-mvp-step">Tool selection</span><span class="cs-mvp-arrow">→</span>
+        <span class="cs-mvp-step">Metadata KI-ready</span><span class="cs-mvp-arrow">→</span>
+        <span class="cs-mvp-step">Data foundation</span><span class="cs-mvp-arrow">→</span>
+        <span class="cs-mvp-step">KI toolchain setup</span><span class="cs-mvp-arrow">→</span>
+        <span class="cs-mvp-step">User testing</span><span class="cs-mvp-arrow">→</span>
+        <span class="cs-mvp-step">Rollout</span>
+      </div>
+    </div>
+
+    <div class="cs-next fade">
+      <span class="cs-next-label">Next case study</span>
+      <a href="sds.html" class="cs-next-link">Solid Design System</a>
+    </div>
+
+    <footer class="fade">
+      <div class="footer-contact">
+        <a href="mailto:miguelxnxn@gmail.com">Email</a>
+        <a href="https://www.linkedin.com/in/miguel-nunez-nunez/" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="cv.pdf">CV</a>
+      </div>
+      <span>Miguel Núñez · Cologne · 2026</span>
+    </footer>
+
+  </div>
+</main>
+
+<script>
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('in'), i * 60);
+        obs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.08 });
+
+  document.querySelectorAll('.fade').forEach(el => obs.observe(el));
+</script>
+
+</body>
+</html>

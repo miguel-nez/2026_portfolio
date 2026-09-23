@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Solid Design System — Miguel Núñez</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+<!-- SIDEBAR -->
+<aside class="sidebar">
+  <a href="index.html" style="text-decoration:none">
+    <p class="sidebar-name">Miguel Núñez</p>
+    <p class="sidebar-role">Product Designer</p>
+  </a>
+
+  <nav class="sidebar-nav">
+    <a href="index.html#work">Work</a>
+    <div class="nav-projects">
+      <a href="ard.html">ARD Mediathek</a>
+      <a href="sds.html" class="active">Solid Design System</a>
+      <a href="tracker.html">Dog Tracker app</a>
+      <a href="accessibility.html">Accessibility task force</a>
+    </div>
+    <a href="index.html#about">About</a>
+  </nav>
+
+  <div class="sidebar-contact">
+    <a href="mailto:miguelxnxn@gmail.com">Email</a>
+    <a href="https://www.linkedin.com/in/miguel-nunez-nunez/" target="_blank" rel="noopener">LinkedIn</a>
+    <a href="cv.pdf" class="cv-link">CV</a>
+  </div>
+</aside>
+
+<!-- MAIN -->
+<main class="main">
+  <div class="cs-content">
+
+    <div class="cs-header fade">
+      <p class="cs-eyebrow">Design system · investment banking · sole UX designer</p>
+      <h1 class="cs-title">Solid Design System —<br><strong>documentation, patterns, launch page</strong></h1>
+      <p class="cs-subtitle">The components were nearly finished. The next job was writing down how to use them, and giving the bank's product teams a reason to.</p>
+    </div>
+
+    <div class="cs-meta-row fade">
+      <div class="cs-meta-item"><p class="cs-meta-label">My role</p><p class="cs-meta-value">Sole UX designer on the project</p></div>
+      <div class="cs-meta-item"><p class="cs-meta-label">Ownership</p><p class="cs-meta-value">Documentation language · component research · pattern strategy · landing page concept</p></div>
+      <div class="cs-meta-item"><p class="cs-meta-label">Team</p><p class="cs-meta-value">One colleague on patterns · one visual designer on the landing page · the client's design system team</p></div>
+      <div class="cs-meta-item"><p class="cs-meta-label">Recognition</p><p class="cs-meta-value">UX Design Awards 2024 nominee</p></div>
+    </div>
+
+    <div class="cs-section fade">
+      <p class="cs-section-label">Context</p>
+      <p class="cs-body">The Solid Design System is a framework-agnostic, token-based component library built to hold a large investment bank's products together. When I joined, most components were well into development and the engineering side was in good shape.</p>
+      <p class="cs-body">What existed was written for developers, which made sense given who'd been building it: specs, properties, values. What didn't exist yet was the layer that tells a designer when to reach for a component, why it behaves the way it does, what happens at the edges. And across the bank, product teams were still solving the same problems separately, because nothing yet told them a solution already existed.</p>
+    </div>
+
+    <div class="cs-section fade">
+      <p class="cs-section-label">Approach</p>
+
+      <div class="cs-phase"><p class="cs-phase-num">01</p><div class="cs-phase-body">
+        <p><strong>Learning a system I hadn't built.</strong> This was my first design system of that size, so I read a lot. The components. How other design systems structure their documentation. And how the bank's older components had actually been applied across its products, which turned out to be the most useful part, because it showed me which inconsistencies were accidents and which were teams working around something the system hadn't covered.</p>
+      </div></div>
+
+      <div class="cs-phase"><p class="cs-phase-num">02</p><div class="cs-phase-body">
+        <p><strong>Asking the people using it.</strong> I surveyed designers and developers about where the documentation let them down. Not what they thought it should contain in principle, but what had cost them time recently.</p>
+      </div></div>
+
+      <div class="cs-phase"><p class="cs-phase-num">03</p><div class="cs-phase-body">
+        <p><strong>A language for the documentation.</strong> From that I defined how each component gets written up. What an entry contains, how things are named, where accessibility notes go, how edge cases are handled. The aim was that someone joining in two years could add a component without the whole thing drifting.</p>
+      </div></div>
+
+      <div class="cs-image fade"></div>
+      <p class="cs-image-caption fade">↑ Component documentation page in Storybook, the structure I defined</p>
+
+      <div class="cs-phase"><p class="cs-phase-num">04</p><div class="cs-phase-body">
+        <p><strong>A disagreement with the client.</strong> Phase two was a pattern library, and the client's first idea was ready-made blocks, a form, a search bar, a navigation, that teams could drop in. I thought that would age badly across so many products. Prescriptive blocks tend to get used where they don't fit or not at all. We went back and forth on it over a couple of sessions.</p>
+      </div></div>
+
+      <div class="cs-tension fade">
+        <div class="cs-tension-item"><p class="cs-tension-label">Their starting point</p><p class="cs-tension-body">Pre-built blocks. Quick to ship, easy to adopt, and a fair thing to want.</p></div>
+        <div class="cs-tension-item"><p class="cs-tension-label">Mine</p><p class="cs-tension-body">Document the function and the logic, let teams decide the layout.</p></div>
+      </div>
+
+      <p class="cs-body">We met in the middle. Patterns grounded in research across their actual products, written loosely enough to survive different contexts.</p>
+
+      <div class="cs-phase" style="margin-top: 1.5rem"><p class="cs-phase-num">05</p><div class="cs-phase-body">
+        <p><strong>Finding the patterns.</strong> I went looking for where teams had independently built the same thing, then talked to stakeholders to check my reading and to catch the patterns obvious to them and invisible to me. Forms, search, navigation, first-time user flows, data visualisation, some others.</p>
+      </div></div>
+
+      <div class="cs-image fade"></div>
+      <p class="cs-image-caption fade">↑ Pattern definition, Forms</p>
+
+      <div class="cs-phase"><p class="cs-phase-num">06</p><div class="cs-phase-body">
+        <p><strong>The landing page.</strong> With a visual designer, I wrote the narrative for the system's public page. The audience was internal teams who hadn't adopted the system yet, so the job was to make the case for it.</p>
+      </div></div>
+
+      <div class="cs-story-grid fade">
+        <div class="cs-story-item"><p class="cs-story-num">01</p><p class="cs-story-title">Values</p><p class="cs-story-body">What the system stands for, before any feature</p></div>
+        <div class="cs-story-item"><p class="cs-story-num">02</p><p class="cs-story-title">Workflow</p><p class="cs-story-body">How design and development get faster together</p></div>
+        <div class="cs-story-item"><p class="cs-story-num">03</p><p class="cs-story-title">Sustainability</p><p class="cs-story-body">Less rebuilt, less shipped, less energy</p></div>
+        <div class="cs-story-item"><p class="cs-story-num">04</p><p class="cs-story-title">Stakeholders</p><p class="cs-story-body">One argument each for product owners, designers, developers, brand</p></div>
+        <div class="cs-story-item"><p class="cs-story-num">05</p><p class="cs-story-title">Experts</p><p class="cs-story-body">The design system team as a service you can call</p></div>
+        <div class="cs-story-item"><p class="cs-story-num">06</p><p class="cs-story-title">Release notes</p><p class="cs-story-body">The page as a living channel, not a brochure</p></div>
+      </div>
+
+      <p class="cs-body" style="margin-top: 1.5rem">The sustainability section was the deliberate choice. Design systems usually get sold on speed, and speed is a weak argument to a team that's already busy. Fewer components rebuilt means less code, less bandwidth, less energy, and the page itself was built lightweight enough to make the point.</p>
+
+      <div class="cs-image fade"></div>
+      <p class="cs-image-caption fade">↑ The public landing page</p>
+    </div>
+
+    <div class="cs-section fade">
+      <p class="cs-section-label">What I contributed</p>
+      <div class="cs-findings">
+        <div class="cs-finding"><p class="cs-finding-label">Documentation language</p><p>A structure other people could keep adding to.</p></div>
+        <div class="cs-finding"><p class="cs-finding-label">Research</p><p>Cross-product audit, surveys, a look at how other systems handle the same problem.</p></div>
+        <div class="cs-finding"><p class="cs-finding-label">The pattern library argument</p><p>And a compromise both sides could work with.</p></div>
+        <div class="cs-finding"><p class="cs-finding-label">Landing page</p><p>Showcase ofthe system targeted at teams who hadn't adopted it yet.</p></div>
+      </div>
+    </div>
+
+    <div class="cs-section fade">
+      <p class="cs-section-label">Outcome</p>
+      <div class="cs-outcomes">
+        <div class="cs-outcome"><p class="cs-outcome-num">Shipped</p><p class="cs-outcome-label">the documentation framework became the standard for everything added afterwards</p></div>
+        <div class="cs-outcome"><p class="cs-outcome-num">2024</p><p class="cs-outcome-label">UX Design Awards nominee</p></div>
+        <div class="cs-outcome"><p class="cs-outcome-num">Live</p><p class="cs-outcome-label">the landing page is public</p></div>
+      </div>
+      <p class="cs-body">View the live landing page: <a href="https://solid-design-system.union-investment.de" target="_blank" rel="noopener" class="cs-inline-link">solid-design-system.union-investment.de ↗</a></p>
+    </div>
+
+    <div class="cs-next fade">
+      <span class="cs-next-label">Next case study</span>
+      <a href="tracker.html" class="cs-next-link">Dog Tracker app</a>
+    </div>
+
+    <footer class="fade">
+      <div class="footer-contact">
+        <a href="mailto:miguelxnxn@gmail.com">Email</a>
+        <a href="https://www.linkedin.com/in/miguel-nunez-nunez/" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="cv.pdf">CV</a>
+      </div>
+      <span>Miguel Núñez · Cologne · 2026</span>
+    </footer>
+
+  </div>
+</main>
+
+<script>
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('in'), i * 60);
+        obs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.08 });
+
+  document.querySelectorAll('.fade').forEach(el => obs.observe(el));
+</script>
+
+</body>
+</html>
