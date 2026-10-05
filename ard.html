@@ -82,8 +82,10 @@
         <p><strong>The prompt.</strong> Four steps. Find candidate moods, score each against the decision tree, rank them, then check your own output for duplicates and mismatches. The Mood-Bible went in as reference. Eight videos, five runs each, on both toolchains.</p>
       </div></div>
 
-      <div class="cs-image fade"></div>
-      <p class="cs-image-caption fade">↑ Prompt structure, the four-step scoring workflow from the system prompt</p>
+      <div class="cs-image fade">
+        <img src="assets/images/broadcaster/broadcaster_prompt-snippet.png" alt="Snippet from the system prompt showing its structure">
+      </div>
+      <p class="cs-image-caption fade">↑ Snippet from the system prompt</p>
 
       <div class="cs-phase"><p class="cs-phase-num">03</p><div class="cs-phase-body">
         <p><strong>The Python detour.</strong> Eighty runs across two toolchains is more arithmetic than a chat assistant handles reliably, we tried a few and the results kept shifting. So I wrote a script instead, with AI helping me through the parts I didn't know, and defined three measures: does it pick the same tags each run, does it score them similarly, does it rank them the same way. I'd watched all eight videos and sat on the human panel myself, so I had a rough feel for when a number was wrong. The first two versions produced numbers that were. The third didn't.</p>
@@ -98,7 +100,9 @@
       <p class="cs-section-label">What we found</p>
       <p class="cs-body">Both toolchains cleared the thresholds we'd set, above 91% on intensity stability across all eight videos. The humans, working from the same list but without the decision trees, came in between 36 and 54% at cluster level. Which says less about the panel and more about the fact that we'd written the definitions for the machine and hadn't given people the same support.</p>
 
-      <div class="cs-image fade"></div>
+      <div class="cs-image fade">
+        <img src="assets/images/broadcaster/broadcaster_mood-consistency.png" alt="Chart showing mood presence consistency across the eight test videos">
+      </div>
       <p class="cs-image-caption fade">↑ Mood presence consistency, AI toolchains compared across the eight test videos</p>
 
       <p class="cs-body">Three things stood out.</p>
