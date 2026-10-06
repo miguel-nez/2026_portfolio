@@ -75,6 +75,25 @@
     <div class="cs-section fade">
       <p class="cs-section-label">Approach</p>
 
+      <div class="cs-diagram fade">
+        <p class="tc-label">Toolchain 1 · indirect</p>
+        <div class="tc-node"><p class="tc-title">Video</p><p class="tc-sub">image and audio</p></div>
+        <span class="tc-arrow" aria-hidden="true">→</span>
+        <div class="tc-node tc-ai"><p class="tc-title">Azure Video Indexer</p><p class="tc-sub">extracts summary, transcript, emotions, content moderation and labels</p></div>
+        <span class="tc-arrow" aria-hidden="true">→</span>
+        <div class="tc-node tc-ai"><p class="tc-title">Claude Sonnet&nbsp;4.5</p><p class="tc-sub">interprets the extracted data, never sees the video</p></div>
+        <span class="tc-arrow" aria-hidden="true">→</span>
+        <div class="tc-node"><p class="tc-title">Tags</p><p class="tc-sub"><span class="tc-nowrap">3–5</span> moods, <span class="tc-nowrap">1–3</span> motivations, with scores</p></div>
+
+        <p class="tc-label">Toolchain 2 · direct</p>
+        <div class="tc-node"><p class="tc-title">Video</p><p class="tc-sub">image and audio</p></div>
+        <span class="tc-arrow" aria-hidden="true">→</span>
+        <div class="tc-node tc-ai tc-wide"><p class="tc-title">Gemini in Google AI Studio</p><p class="tc-sub">reads image, audio and text in one pass, including light, colour and tone of voice</p></div>
+        <span class="tc-arrow" aria-hidden="true">→</span>
+        <div class="tc-node"><p class="tc-title">Tags</p><p class="tc-sub"><span class="tc-nowrap">3–5</span> moods, <span class="tc-nowrap">1–3</span> motivations, with scores</p></div>
+      </div>
+      <p class="cs-image-caption fade">↑ The two toolchains. Both received the same prompt, Mood-Bible and rules</p>
+
       <div class="cs-phase"><p class="cs-phase-num">01</p><div class="cs-phase-body">
         <p><strong>Two toolchains.</strong> We compared two different ways of getting from a video to tags. The first one is indirect. Azure Video Indexer extracts a summary, the transcript, emotions detected in the spoken text, content moderation signals with severity levels and labels for objects and scenes, and Claude Sonnet 4.5 interprets this data. Claude never sees the video, only what Azure extracted from it. The second one is direct: Gemini in Google AI Studio processes image, audio and text in one pass, so it can also use things like lighting, colour or the tone of a voice. My colleague worked on the Azure toolchain with support from a developer. I set up and ran the Google toolchain on my own, which was possible without technical resources because AI Studio doesn't require programming.</p>
       </div></div>
