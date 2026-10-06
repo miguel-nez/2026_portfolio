@@ -42,21 +42,21 @@
     <div class="cs-header fade">
       <p class="cs-eyebrow">AI toolchain · proof of concept · public broadcasting</p>
       <h1 class="cs-title">ARD Mediathek /<br><strong>identifying moods and motivations and weighing them with AI</strong></h1>
-      <p class="cs-subtitle">Two AI toolchains, eight videos, eighty runs. And a question we kept coming back to: when the thing you're measuring is subjective, what counts as correct?</p>
+      <p class="cs-subtitle">A proof of concept for ARD to find out if AI can generate two subjective metadata fields, mood and consumption motivation, reliably enough to support the editorial teams. A big part of the work was deciding how to measure this, because people don't agree on these categories either.</p>
     </div>
 
     <div class="cs-meta-row fade">
       <div class="cs-meta-item"><p class="cs-meta-label">My role</p><p class="cs-meta-value">Experience designer</p></div>
-      <div class="cs-meta-item"><p class="cs-meta-label">Ownership</p><p class="cs-meta-value">Google AI Studio toolchain · metrics tool · insights · project lead from the results phase</p></div>
-      <div class="cs-meta-item"><p class="cs-meta-label">Team</p><p class="cs-meta-value">One senior designer · one project manager · a developer on the other toolchain</p></div>
+      <div class="cs-meta-item"><p class="cs-meta-label">Ownership</p><p class="cs-meta-value">Google AI Studio toolchain · consistency metrics and analysis tool · insights · project lead in the evaluation phase</p></div>
+      <div class="cs-meta-item"><p class="cs-meta-label">Team</p><p class="cs-meta-value">One senior experience designer · one project manager · one developer on the Azure toolchain</p></div>
       <div class="cs-meta-item"><p class="cs-meta-label">Duration</p><p class="cs-meta-value">3–4 months</p></div>
     </div>
 
     <div class="cs-section fade">
       <p class="cs-section-label">The problem</p>
-      <p class="cs-body">ARD produces more than 2,000 hours of content a day. Every video gets 23 editorial metadata fields, filled in by hand by editorial teams whose main job is, understandably, making programmes. With that volume and no shared definition of a word like <em>quirky</em>, the tagging drifted. Not through carelessness. Nobody had ever been given a common vocabulary to work from.</p>
-      <p class="cs-body">The knock-on effects were concrete: the recommendation engine had thin data, younger viewers struggled to find things, and partner platforms needed the same information in five other formats.</p>
-      <p class="cs-body">So the brief was quite specific. Could an AI generate two of the hardest fields, Mood and Consumption Motivation, well enough to take the job off people's desks?</p>
+      <p class="cs-body">ARD produces more than 2,000 hours of content every day, and each video has 23 editorial metadata fields. Editorial teams fill them in by hand, next to their actual work. Each team does it a bit differently, so the quality and completeness of the metadata varies a lot.</p>
+      <p class="cs-body">This has consequences on both sides. For viewers, content is harder to find and the recommendation algorithm works with weak data, which frustrates younger users in particular. For ARD, the manual work is an extra load on the editorial teams, and partner platforms with their own metadata requirements can only be served with considerable extra effort.</p>
+      <p class="cs-body">Our task was a proof of concept for two of the most difficult fields, Mood and Consumption Motivation, including an analysis of whether AI tools could take over part of this work.</p>
 
       <div class="cs-stats">
         <div class="cs-stat"><p class="cs-stat-num">2,000h</p><p class="cs-stat-label">of ARD content produced per day</p></div>
@@ -66,20 +66,22 @@
     </div>
 
     <div class="cs-section fade">
-      <p class="cs-section-label">What made this hard</p>
-      <p class="cs-body">Mood is subjective. Two people watch the same film, one says <em>melancholic</em>, the other says <em>dramatic</em>, and they're both right. Before we could test anything we needed a vocabulary that could be tested against. So the first weeks went into clusters and sub-clusters, decision trees, and a reference document we called the Mood-Bible for the cases where two terms sat too close together. My colleague had already started this before I joined, and I came in as that phase was wrapping up.</p>
-      <p class="cs-body">We also had to think about how a language model fails. It adds terms that aren't on the list. It writes a convincing reason for a guess. It answers from what it already knows about a well-known show instead of from the video in front of it. Each of those became a rule in the prompt.</p>
+      <p class="cs-section-label">Making subjective categories testable</p>
+      <p class="cs-body">Mood and consumption motivation describe how a programme feels and why people watch it. There is no single correct answer, so before testing any AI we needed a structure to measure the results against. My colleague had started this work before I joined the project: 30 moods grouped into 5 clusters and 13 sub-clusters, and 27 consumption motivations based on ARD's own media research, grouped into 4 clusters with their sub-clusters. Clusters reduce the variance in the results, but they don't remove it.</p>
+      <p class="cs-body">For terms that are hard to tell apart, like quirky and absurd or provocative and controversial, there was a reference document we called the Mood-Bible. It has a definition, recognition criteria and examples for every mood, and decision trees for the borderline cases.</p>
+      <p class="cs-body">We also wrote down how we expected the AI to fail, and built a countermeasure into the prompt for each case. The model could add terms that are not in the list, so the rules only allow the given vocabulary. It could answer from its training data, for example from what it already knows about a famous series, so the prompt limits it to the data of the video itself. And it could invent an answer instead of showing uncertainty. For that reason every tag comes with a score, a confidence level and a justification anchored in the data, and at the end the model checks its own output against the rules.</p>
     </div>
 
     <div class="cs-section fade">
       <p class="cs-section-label">Approach</p>
 
       <div class="cs-phase"><p class="cs-phase-num">01</p><div class="cs-phase-body">
-        <p><strong>Two toolchains, side by side.</strong> One route sent the video through Azure Video Indexer for emotions, transcript, labels and content-moderation signals, then handed that output to Claude to interpret. The other used Google AI Studio with Gemini, which takes video, audio and text in a single pass. My colleague ran Azure with a developer's support. I ran Google on my own, mainly because AI Studio doesn't require you to know much about cloud APIs, and I didn't.</p>
+        <p><strong>Two toolchains.</strong> We compared two different ways of getting from a video to tags. The first one is indirect. Azure Video Indexer extracts a summary, the transcript, emotions detected in the spoken text, content moderation signals with severity levels and labels for objects and scenes, and Claude Sonnet 4.5 interprets this data. Claude never sees the video, only what Azure extracted from it. The second one is direct: Gemini in Google AI Studio processes image, audio and text in one pass, so it can also use things like lighting, colour or the tone of a voice. My colleague worked on the Azure toolchain with support from a developer. I set up and ran the Google toolchain on my own, which was possible without technical resources because AI Studio doesn't require programming.</p>
       </div></div>
 
       <div class="cs-phase"><p class="cs-phase-num">02</p><div class="cs-phase-body">
-        <p><strong>The prompt.</strong> Four steps. Find candidate moods, score each against the decision tree, rank them, then check your own output for duplicates and mismatches. The Mood-Bible went in as reference. Eight videos, five runs each, on both toolchains.</p>
+        <p><strong>The prompt and the test set.</strong> The prompt guides the model through four steps. First it identifies 5–8 candidate moods. Then it scores each one with a decision tree: how central the mood is to the structure of the video sets a base range (60–69, 70–84 or 85–100), its presence in the text adds up to 15 points and the emotion data up to 10. After that it ranks the moods and keeps the 3–5 strongest with a score of at least 60. The last step checks for duplicates, scores that don't match their justification and a wrong order. One extra rule stops the model from picking several near-synonyms from the same sub-cluster, so the result describes the video more broadly. Consumption motivation works in a similar way, but starts with an analysis of the target group and returns 1–3 motivations marked as primary or secondary.</p>
+        <p style="margin-top: 0.75rem">For the test we chose eight titles from different genres and formats: a crime drama, a feature film, several documentaries and reportages, a hybrid format and a children's show. Each title ran five times on each toolchain, 80 runs in total, and every run was exported as a CSV.</p>
       </div></div>
 
       <div class="cs-image fade">
@@ -88,43 +90,50 @@
       <p class="cs-image-caption fade">↑ Snippet from the system prompt</p>
 
       <div class="cs-phase"><p class="cs-phase-num">03</p><div class="cs-phase-body">
-        <p><strong>Taking the lead, and a Python detour.</strong> Once the runs were in, I took the lead on the project. The analysis I shared equally with my senior colleague: together we turned the questions we wanted answered into three measures. Does it pick the same tags each run, does it score them similarly, does it rank them the same way. Eighty runs across two toolchains is more arithmetic than a chat assistant handles reliably, we tried a few and the results kept shifting. So I wrote a script instead, with AI helping me through the parts I didn't know. I'd watched all eight videos and sat on the human panel myself, so I had a rough feel for when a number was wrong. The first versions produced a few of those, and it took a couple of iterations before the numbers matched what I'd seen.</p>
+        <p><strong>Measuring consistency.</strong> When the runs were finished I took the lead on the project. Together with my senior colleague I worked out what we needed to know: across five runs, does the AI choose moods from the same clusters, from the same sub-clusters, the same terms, and how stable are the intensities? From these questions we defined three metrics. Each of them compares the five runs of a video in pairs and averages the result.</p>
       </div></div>
 
+      <div class="cs-findings fade">
+        <div class="cs-finding"><p class="cs-finding-label">Presence consistency</p><p>How many tags two runs have in common, divided by the size of the larger set. Calculated at cluster, sub-cluster and term level.</p></div>
+        <div class="cs-finding"><p class="cs-finding-label">Intensity stability</p><p>100 minus the average score difference for the tags both runs chose.</p></div>
+        <div class="cs-finding"><p class="cs-finding-label">Position consistency</p><p>How far the shared tags move in the ranking from one run to the other.</p></div>
+        <div class="cs-finding"><p class="cs-finding-label">Test criteria</p><p>Defined before testing. Consistency: in every run at least 3 of 5 tags from the same cluster, and at least 60% overlap in intensity. Quality: in 3 of 5 runs, at least 3 of 5 tags in the clusters chosen by the human panel.</p></div>
+      </div>
+
+      <p class="cs-body">The AI assistants we first used for these calculations gave different numbers every time, so I wrote a small Python script instead, with AI helping me with the parts of the code I didn't know. I had watched all eight videos and was also part of the human panel, which helped me notice when a result could not be right. It took a few iterations until the numbers matched what we had seen.</p>
+
       <div class="cs-phase"><p class="cs-phase-num">04</p><div class="cs-phase-body">
-        <p><strong>The human control group.</strong> Eight colleagues tagged the same videos in the same format, four of them per video. We planned to treat their answers as the ground truth.</p>
+        <p><strong>The human panel.</strong> As a control group, eight colleagues tagged the same videos, four people per video. They used the same vocabulary and the same score ranges, from 60–69 for a mood that is recognisable but not dominant to 90–100 for one that dominates the whole video. They worked without the decision trees and the Mood-Bible.</p>
       </div></div>
     </div>
 
     <div class="cs-section fade">
-      <p class="cs-section-label">What we found</p>
-      <p class="cs-body">Run five times, each toolchain picked moods from the same clusters 68–92% of the time, and scored their intensity almost identically, above 91% on every video. Four people tagging the same video agreed with each other far less: 36–54% at cluster level.</p>
-      <p class="cs-body">That isn't quite a fair fight, and it's worth saying so. We were comparing a model with itself against people with each other, and we'd written the decision trees and the Mood-Bible for the machine. The humans had a list and their gut. Giving them the same support is the first thing I'd change in a second round.</p>
+      <p class="cs-section-label">Results</p>
+      <p class="cs-body">Both toolchains passed the consistency criteria for all eight videos. At cluster level, the five runs agreed on mood between 68 and 92% of the time. Intensity stability was above 91% for mood and above 89% for consumption motivation, and the ranking of the shared tags was stable as well. Lower values only appeared at term level, where the AI moved between neighbouring terms inside the same cluster.</p>
+      <p class="cs-body">The human panel agreed much less, between 36 and 54% at cluster level for mood. These numbers are not directly comparable, since one model repeating itself is not the same as four different people agreeing, and the panel worked without the decision trees. Still, it showed us that subjective metadata needs shared definitions and some training for the people doing it as well.</p>
 
       <div class="cs-image fade">
         <img src="assets/images/broadcaster/broadcaster_mood-consistency.png" alt="Table of mood presence consistency scores for both AI toolchains across the eight test videos">
       </div>
       <p class="cs-image-caption fade">↑ Mood presence consistency, AI toolchains compared across the eight test videos</p>
 
-      <p class="cs-body">Consistency was one of two criteria. The other was quality: did the model land in the same clusters as the human panel? For mood it mostly did, all eight videos on Google and seven of eight on Azure, where the eighth still passed at cluster level. Consumption motivation was harder. Three videos fell short on both toolchains: two where the context around a show mattered more than the footage, and one where the model read practical guidance and the panel read something closer to curiosity.</p>
-
-      <p class="cs-body">Four things stood out.</p>
+      <p class="cs-body">For quality we compared the tags of the AI with the clusters chosen by the panel. Mood passed for all eight videos on Google and for seven on Azure; the eighth, the hybrid format, passed at cluster level but not at term level. Consumption motivation was harder, and three videos stayed below the threshold on both toolchains. For Tatort and the children's show, the analysts had context knowledge the model didn't have. For a documentary about male body image, the AI saw orientation and help, while the analysts saw inspiration and curiosity.</p>
 
       <div class="cs-findings fade">
-        <div class="cs-finding"><p class="cs-finding-label">Clusters held</p><p>The AI would drift between neighbouring tags but stay inside the cluster, so mapping search and recommendations to clusters would make the drift irrelevant.</p></div>
-        <div class="cs-finding"><p class="cs-finding-label">Tatort was the hardest</p><p>Lowest for the human panel and for Google's toolchain. For a lot of viewers it's a Sunday-evening ritual before it's a crime drama. Once we gave the model that context, its consumption-motivation tags moved from thrill-seeking and opinion-forming to something to talk about afterwards and a sense of comfort.</p></div>
-        <div class="cs-finding"><p class="cs-finding-label">Format matters</p><p>Magazine-style shows with several segments did better with Google's multimodal read than with the transcript-led Azure route. The right toolchain depends on the content.</p></div>
-        <div class="cs-finding"><p class="cs-finding-label">The rules held, mostly</p><p>Across 80 runs neither toolchain invented a tag or a justification. The one slip: Google still leaned on what it already knew about Tatort, despite being told not to.</p></div>
+        <div class="cs-finding"><p class="cs-finding-label">Clusters are more stable than terms</p><p>The AI moved between neighbouring terms but stayed in the same cluster. Building search and recommendations on clusters and sub-clusters would make the results more reliable.</p></div>
+        <div class="cs-finding"><p class="cs-finding-label">Context changes the answer</p><p>For many viewers Tatort is a Sunday evening ritual. Without that context the model tagged it as thrill-seeking, opinion-forming and moving. With it, the tags became something to talk about afterwards, a sense of comfort and opinion-forming.</p></div>
+        <div class="cs-finding"><p class="cs-finding-label">Format matters</p><p>Google worked better with fragmented formats like the children's show, where the transcript alone loses the smaller segments. Azure and Claude worked better with the hybrid format, which also split the human panel: some read it as sensual, others as dramatic or frightening.</p></div>
+        <div class="cs-finding"><p class="cs-finding-label">The rules mostly held</p><p>In 80 runs neither toolchain invented a term or a justification. The exception was Google using what it already knew about Tatort, although the prompt didn't allow it.</p></div>
       </div>
 
-      <p class="cs-body">And one thing that changed the brief: if people disagree with each other more than the model disagrees with itself, "accurate" can't simply mean "matches the people". Someone has to decide what correct looks like first. That became a requirements list for the next phase.</p>
+      <p class="cs-body">One conclusion changed how we framed the next phase. If people disagree with each other more than the model disagrees with itself, matching the human panel can't be the only definition of a correct result. The definitions themselves need to be validated first, ideally together with ARD's media research.</p>
     </div>
 
     <div class="cs-section fade">
       <p class="cs-section-label">What the client said</p>
-      <p class="cs-body">After I left, the team interviewed people across three departments at ARD and WDR, plus a couple by email with ARD's programme directorate and ZDF Streaming. Two answers stuck.</p>
+      <p class="cs-body">After I left, the team interviewed colleagues from ARD partner management, WDR's machine learning team and WDR's metadata competence unit, and sent questions by email to ARD's programme directorate and to ZDF Streaming.</p>
       <div class="cs-quote"><p>"Wann seid ihr fertig? Ich könnte das gebrauchen."</p><p class="cs-quote-source">"When will you be done? I could use this." · Interview participant, ARD</p></div>
-      <div class="cs-quote"><p>"Verschlagwortung sollte 100% autonom laufen, da kann man mit Fehlern umgehen."</p><p class="cs-quote-source">"Tagging should run fully autonomously. We can live with the mistakes." · Interview participant, ARD</p></div>
+      <div class="cs-quote"><p>"Verschlagwortung sollte 100% autonom laufen, da kann man mit Fehlern umgehen."</p><p class="cs-quote-source">"Keyword tagging should run fully autonomously, there we can live with mistakes." · Interview participant, ARD</p></div>
     </div>
 
     <div class="cs-section fade">
@@ -134,7 +143,7 @@
         <div class="cs-outcome"><p class="cs-outcome-num">68–92%</p><p class="cs-outcome-label">cluster consistency across five runs per video</p></div>
         <div class="cs-outcome"><p class="cs-outcome-num">MVP</p><p class="cs-outcome-label">next phase planned from the findings</p></div>
       </div>
-      <p class="cs-body">The PoC passed. The two toolchains landed close together, each better at a different kind of content, and the findings went into a spec for the next phase. By the time I left, that next phase was being planned as an MVP.</p>
+      <p class="cs-body">The PoC was largely successful. Both toolchains were similarly strong, each with its own strengths, and neither invented terms or reasons. The findings went into a requirements list for the next phase, and several of the requirements come directly from the PoC: AI-generated metadata has to be marked as such so editors can review it, the output should include a confidence level, editors must be able to correct and complete the tags, and series and fragmented formats need their own rules. Age ratings were explicitly excluded from AI generation. By the time I left, the next phase was being planned as an MVP.</p>
       <div class="cs-mvp">
         <span class="cs-mvp-step">Tool selection</span><span class="cs-mvp-arrow">→</span>
         <span class="cs-mvp-step">AI-ready metadata</span><span class="cs-mvp-arrow">→</span>
