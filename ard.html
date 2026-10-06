@@ -40,14 +40,14 @@
   <div class="cs-content">
 
     <div class="cs-header fade">
-      <p class="cs-eyebrow">AI proof of concept · public broadcasting · 3–4 months</p>
-      <h1 class="cs-title">ARD Mediathek —<br><strong>ARD Mediathek / identifying moods and motivations and weighing them with AI</strong></h1>
+      <p class="cs-eyebrow">AI toolchain · proof of concept · public broadcasting</p>
+      <h1 class="cs-title">ARD Mediathek /<br><strong>identifying moods and motivations and weighing them with AI</strong></h1>
       <p class="cs-subtitle">Two AI toolchains, eight videos, eighty runs. And a question we kept coming back to: when the thing you're measuring is subjective, what counts as correct?</p>
     </div>
 
     <div class="cs-meta-row fade">
-      <div class="cs-meta-item"><p class="cs-meta-label">My role</p><p class="cs-meta-value">Product designer</p></div>
-      <div class="cs-meta-item"><p class="cs-meta-label">Ownership</p><p class="cs-meta-value">Google AI Studio toolchain · analysis · metrics · insights</p></div>
+      <div class="cs-meta-item"><p class="cs-meta-label">My role</p><p class="cs-meta-value">Experience designer</p></div>
+      <div class="cs-meta-item"><p class="cs-meta-label">Ownership</p><p class="cs-meta-value">Google AI Studio toolchain · metrics tool · insights · project lead from the results phase</p></div>
       <div class="cs-meta-item"><p class="cs-meta-label">Team</p><p class="cs-meta-value">One senior designer · one project manager · a developer on the other toolchain</p></div>
       <div class="cs-meta-item"><p class="cs-meta-label">Duration</p><p class="cs-meta-value">3–4 months</p></div>
     </div>
@@ -67,7 +67,7 @@
 
     <div class="cs-section fade">
       <p class="cs-section-label">What made this hard</p>
-      <p class="cs-body">Mood is subjective. Two people watch the same film, one says <em>melancholic</em>, the other says <em>dramatic</em>, and they're both right. Before we could test anything we needed a vocabulary that could be tested against. So the first weeks went into clusters and sub-clusters, decision trees, and a reference document we called the Mood-Bible for the cases where two terms sat too close together. My colleague had already started this before I joined; I came in near the end of it and mostly helped tighten definitions.</p>
+      <p class="cs-body">Mood is subjective. Two people watch the same film, one says <em>melancholic</em>, the other says <em>dramatic</em>, and they're both right. Before we could test anything we needed a vocabulary that could be tested against. So the first weeks went into clusters and sub-clusters, decision trees, and a reference document we called the Mood-Bible for the cases where two terms sat too close together. My colleague had already started this before I joined, and I came in as that phase was wrapping up.</p>
       <p class="cs-body">We also had to think about how a language model fails. It adds terms that aren't on the list. It writes a convincing reason for a guess. It answers from what it already knows about a well-known show instead of from the video in front of it. Each of those became a rule in the prompt.</p>
     </div>
 
@@ -83,59 +83,63 @@
       </div></div>
 
       <div class="cs-image fade">
-        <img src="assets/images/broadcaster/broadcaster_prompt-snippet.png" alt="Snippet from the system prompt showing its structure">
+        <img src="assets/images/broadcaster/broadcaster_prompt-snippet.png" alt="Snippet from the system prompt showing its four-step structure">
       </div>
       <p class="cs-image-caption fade">↑ Snippet from the system prompt</p>
 
       <div class="cs-phase"><p class="cs-phase-num">03</p><div class="cs-phase-body">
-        <p><strong>The Python detour.</strong> Eighty runs across two toolchains is more arithmetic than a chat assistant handles reliably, we tried a few and the results kept shifting. So I wrote a script instead, with AI helping me through the parts I didn't know, and defined three measures: does it pick the same tags each run, does it score them similarly, does it rank them the same way. I'd watched all eight videos and sat on the human panel myself, so I had a rough feel for when a number was wrong. The first two versions produced numbers that were. The third didn't.</p>
+        <p><strong>Taking the lead, and a Python detour.</strong> Once the runs were in, I took the lead on the project. The analysis I shared equally with my senior colleague: together we turned the questions we wanted answered into three measures. Does it pick the same tags each run, does it score them similarly, does it rank them the same way. Eighty runs across two toolchains is more arithmetic than a chat assistant handles reliably, we tried a few and the results kept shifting. So I wrote a script instead, with AI helping me through the parts I didn't know. I'd watched all eight videos and sat on the human panel myself, so I had a rough feel for when a number was wrong. The first versions produced a few of those, and it took a couple of iterations before the numbers matched what I'd seen.</p>
       </div></div>
 
       <div class="cs-phase"><p class="cs-phase-num">04</p><div class="cs-phase-body">
-        <p><strong>The human control group.</strong> Eight colleagues tagged the same videos in the same format. We planned to treat their answers as the ground truth.</p>
+        <p><strong>The human control group.</strong> Eight colleagues tagged the same videos in the same format, four of them per video. We planned to treat their answers as the ground truth.</p>
       </div></div>
     </div>
 
     <div class="cs-section fade">
       <p class="cs-section-label">What we found</p>
-      <p class="cs-body">Both toolchains cleared the thresholds we'd set, above 91% on intensity stability across all eight videos. The humans, working from the same list but without the decision trees, came in between 36 and 54% at cluster level. Which says less about the panel and more about the fact that we'd written the definitions for the machine and hadn't given people the same support.</p>
+      <p class="cs-body">Run five times, each toolchain picked moods from the same clusters 68–92% of the time, and scored their intensity almost identically, above 91% on every video. Four people tagging the same video agreed with each other far less: 36–54% at cluster level.</p>
+      <p class="cs-body">That isn't quite a fair fight, and it's worth saying so. We were comparing a model with itself against people with each other, and we'd written the decision trees and the Mood-Bible for the machine. The humans had a list and their gut. Giving them the same support is the first thing I'd change in a second round.</p>
 
       <div class="cs-image fade">
-        <img src="assets/images/broadcaster/broadcaster_mood-consistency.png" alt="Chart showing mood presence consistency across the eight test videos">
+        <img src="assets/images/broadcaster/broadcaster_mood-consistency.png" alt="Table of mood presence consistency scores for both AI toolchains across the eight test videos">
       </div>
       <p class="cs-image-caption fade">↑ Mood presence consistency, AI toolchains compared across the eight test videos</p>
 
-      <p class="cs-body">Three things stood out.</p>
+      <p class="cs-body">Consistency was one of two criteria. The other was quality: did the model land in the same clusters as the human panel? For mood it mostly did, all eight videos on Google and seven of eight on Azure, where the eighth still passed at cluster level. Consumption motivation was harder. Three videos fell short on both toolchains: two where the context around a show mattered more than the footage, and one where the model read practical guidance and the panel read something closer to curiosity.</p>
+
+      <p class="cs-body">Four things stood out.</p>
 
       <div class="cs-findings fade">
         <div class="cs-finding"><p class="cs-finding-label">Clusters held</p><p>The AI would drift between neighbouring tags but stay inside the cluster, so mapping search and recommendations to clusters would make the drift irrelevant.</p></div>
-        <div class="cs-finding"><p class="cs-finding-label">Tatort scored lowest</p><p>On both sides. It's a Sunday-evening ritual for a lot of people before it's a crime drama, and that context has to be supplied, it can't be inferred from the footage.</p></div>
+        <div class="cs-finding"><p class="cs-finding-label">Tatort was the hardest</p><p>Lowest for the human panel and for Google's toolchain. For a lot of viewers it's a Sunday-evening ritual before it's a crime drama. Once we gave the model that context, its consumption-motivation tags moved from thrill-seeking and opinion-forming to something to talk about afterwards and a sense of comfort.</p></div>
         <div class="cs-finding"><p class="cs-finding-label">Format matters</p><p>Magazine-style shows with several segments did better with Google's multimodal read than with the transcript-led Azure route. The right toolchain depends on the content.</p></div>
+        <div class="cs-finding"><p class="cs-finding-label">The rules held, mostly</p><p>Across 80 runs neither toolchain invented a tag or a justification. The one slip: Google still leaned on what it already knew about Tatort, despite being told not to.</p></div>
       </div>
 
-      <p class="cs-body">And one finding that changed the brief: if people are less consistent than the model, "accurate" can't mean "matches the people". Someone has to decide what correct looks like first. That became a requirements list for whoever builds the MVP.</p>
+      <p class="cs-body">And one thing that changed the brief: if people disagree with each other more than the model disagrees with itself, "accurate" can't simply mean "matches the people". Someone has to decide what correct looks like first. That became a requirements list for the next phase.</p>
     </div>
 
     <div class="cs-section fade">
       <p class="cs-section-label">What the client said</p>
-      <p class="cs-body">After the PoC, interviews were run across three departments at ARD and WDR, plus a couple by email with ARD's programme directorate and ZDF Streaming.</p>
-      <div class="cs-quote"><p>"Wann seid ihr fertig? Ich könnte das gebrauchen."</p><p class="cs-quote-source">Interview participant, ARD stakeholder interviews</p></div>
-      <div class="cs-quote"><p>"Verschlagwortung sollte 100% autonom laufen, da kann man mit Fehlern umgehen."</p><p class="cs-quote-source">Interview participant, ARD stakeholder interviews</p></div>
+      <p class="cs-body">After I left, the team interviewed people across three departments at ARD and WDR, plus a couple by email with ARD's programme directorate and ZDF Streaming. Two answers stuck.</p>
+      <div class="cs-quote"><p>"Wann seid ihr fertig? Ich könnte das gebrauchen."</p><p class="cs-quote-source">"When will you be done? I could use this." · Interview participant, ARD</p></div>
+      <div class="cs-quote"><p>"Verschlagwortung sollte 100% autonom laufen, da kann man mit Fehlern umgehen."</p><p class="cs-quote-source">"Tagging should run fully autonomously. We can live with the mistakes." · Interview participant, ARD</p></div>
     </div>
 
     <div class="cs-section fade">
       <p class="cs-section-label">Outcome</p>
       <div class="cs-outcomes">
         <div class="cs-outcome"><p class="cs-outcome-num">80</p><p class="cs-outcome-label">AI runs analysed across 2 toolchains</p></div>
-        <div class="cs-outcome"><p class="cs-outcome-num">5+</p><p class="cs-outcome-label">stakeholder interviews across ARD, WDR and ZDF</p></div>
-        <div class="cs-outcome"><p class="cs-outcome-num">MVP</p><p class="cs-outcome-label">project moved on to planning and requirements</p></div>
+        <div class="cs-outcome"><p class="cs-outcome-num">68–92%</p><p class="cs-outcome-label">cluster consistency across five runs per video</p></div>
+        <div class="cs-outcome"><p class="cs-outcome-num">MVP</p><p class="cs-outcome-label">next phase planned from the findings</p></div>
       </div>
-      <p class="cs-body">The PoC passed. The two toolchains landed close together, each better at a different kind of content, and the findings went into a spec for the next phase. I left before the MVP started. I'm told it did.</p>
+      <p class="cs-body">The PoC passed. The two toolchains landed close together, each better at a different kind of content, and the findings went into a spec for the next phase. By the time I left, that next phase was being planned as an MVP.</p>
       <div class="cs-mvp">
         <span class="cs-mvp-step">Tool selection</span><span class="cs-mvp-arrow">→</span>
-        <span class="cs-mvp-step">Metadata KI-ready</span><span class="cs-mvp-arrow">→</span>
+        <span class="cs-mvp-step">AI-ready metadata</span><span class="cs-mvp-arrow">→</span>
         <span class="cs-mvp-step">Data foundation</span><span class="cs-mvp-arrow">→</span>
-        <span class="cs-mvp-step">KI toolchain setup</span><span class="cs-mvp-arrow">→</span>
+        <span class="cs-mvp-step">AI toolchain setup</span><span class="cs-mvp-arrow">→</span>
         <span class="cs-mvp-step">User testing</span><span class="cs-mvp-arrow">→</span>
         <span class="cs-mvp-step">Rollout</span>
       </div>
