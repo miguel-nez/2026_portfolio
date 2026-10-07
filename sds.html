@@ -54,8 +54,8 @@
 
     <div class="cs-section fade">
       <p class="cs-section-label">The problem</p>
-      <p class="cs-body">The Solid Design System is a framework-agnostic component library for Union Investment's digital products. It is built on design tokens, so colours, typography and spacing are defined once and shared between Figma and code, and components have the same names and properties on both sides. When I joined, most components were already well into development. They were built from the many versions of the same elements that existed across Union Investment's products.</p>
-      <p class="cs-body">The documentation was written for developers: properties, values and technical specs. What was missing was the layer for the people designing with the system. When should a component be used, and when not? What is the difference between two similar components? What does accessibility require from the person using it? Without these answers, teams kept building their own solutions, and the same form or search existed in slightly different versions across products.</p>
+      <p class="cs-body">The Solid Design System is the framework-agnostic component library behind Union Investment's digital products. It is built on design tokens, and components have the same names and properties in Figma and in code. When I joined, most components were already well into development. They were built from the many versions of the same elements that existed across the company's products.</p>
+      <p class="cs-body">The documentation at that point was written for developers. What was missing was guidance for the people designing with the system, like when to use a component or how to choose between two similar ones. Without it, teams kept building their own solutions, and the same form or search existed in slightly different versions across products.</p>
     </div>
 
     <div class="cs-section fade">
@@ -70,17 +70,15 @@
       </div></div>
 
       <div class="cs-phase"><p class="cs-phase-num">03</p><div class="cs-phase-body">
-        <p><strong>A structure and a language for every component.</strong> From the research I defined a fixed structure for each component page, so designers and developers find the same information in the same place.</p>
+        <p><strong>A structure and a language for every component.</strong> From the research I defined a fixed structure for each component page and a few rules for how it is written.</p>
       </div></div>
 
       <div class="cs-findings fade">
-        <div class="cs-finding"><p class="cs-finding-label">Example and links</p><p>A live default example, with links to the Storybook documentation, the Figma library and the Figma component docs, and to related components and templates.</p></div>
-        <div class="cs-finding"><p class="cs-finding-label">Common use cases</p><p>Concrete situations where the component is the right choice, for example a single FAQ item or optional sections in a long form.</p></div>
-        <div class="cs-finding"><p class="cs-finding-label">Usage guidelines</p><p>Rules for each slot and for the content, and comparisons where two components overlap, for example when to use an accordion instead of an expandable.</p></div>
-        <div class="cs-finding"><p class="cs-finding-label">Accessibility information</p><p>What the designer has to take care of when using the component, linked to the system's best practices for WCAG compliance.</p></div>
+        <div class="cs-finding"><p class="cs-finding-label">Use cases before rules</p><p>Common use cases come before the guidelines. People usually first need to know if this is the right component at all, and only then how to use it.</p></div>
+        <div class="cs-finding"><p class="cs-finding-label">Similar components side by side</p><p>Where two components are close, like an accordion and an expandable, the guidelines compare them directly. A comparison answers the question faster than two separate pages.</p></div>
+        <div class="cs-finding"><p class="cs-finding-label">Accessibility on every page</p><p>Every component page says what the designer has to take care of and links to the general best practices. That way it comes up while people are making the decision.</p></div>
+        <div class="cs-finding"><p class="cs-finding-label">Written to be continued</p><p>Guidelines are short instructions that start with a verb, and names are the same in Figma and in code. The system had to keep growing after my part ended, so other people needed to write new pages the same way.</p></div>
       </div>
-
-      <p class="cs-body">The language is defined as well. Guidelines are short instructions that start with a verb, like use, keep, ensure or avoid, and component, slot and property names are the same in Figma and in code. This keeps the documentation consistent when other people add new components, which was the main goal, because the system had to keep growing after my part of the project ended.</p>
 
       <div class="cs-image fade">
         <img src="assets/images/sds/sds_storybook.png" alt="Component documentation page in Storybook">
@@ -88,7 +86,7 @@
       <p class="cs-image-caption fade">↑ Component documentation page in Storybook, the structure I defined</p>
 
       <div class="cs-phase"><p class="cs-phase-num">04</p><div class="cs-phase-body">
-        <p><strong>Finding middle ground with the client.</strong> The second phase was a pattern library: recurring combinations of components, such as a form or a search, documented for teams across the company. The client wanted ready-made blocks that teams could copy into their products and use right away. That is a fair goal, because speed helps a lot with adoption. My concern was that one fixed layout would not fit all the different products, and that teams with other needs would end up changing the blocks in their own way. After a few sessions together we agreed to do both.</p>
+        <p><strong>Finding middle ground with the client.</strong> In the second phase we built a pattern library. The client wanted ready-made blocks that teams could copy into their products and use right away. That is a fair goal, because speed helps a lot with adoption. My concern was that one fixed layout would not fit all the different products, and that teams with other needs would end up changing the blocks in their own way. After a few sessions together we agreed to do both.</p>
       </div></div>
 
       <div class="cs-tension fade">
@@ -96,7 +94,7 @@
         <div class="cs-tension-item"><p class="cs-tension-label">Ready-made blocks</p><p class="cs-tension-body">Copy-paste blocks for the most common forms: login, password reset, contact and personal information.</p></div>
       </div>
 
-      <p class="cs-body">The patterns give teams the rules, and the blocks give them a fast start for the cases that look almost the same in every product.</p>
+      <p class="cs-body">The patterns give teams the rules, and the blocks give them a fast start for the cases that look almost the same in every product. Where a block also exists in code, it links to its version in Storybook, so designers and developers start from the same thing.</p>
 
       <div class="cs-phase" style="margin-top: 1.5rem"><p class="cs-phase-num">05</p><div class="cs-phase-body">
         <p><strong>Finding the patterns.</strong> I led this work, with support from a colleague. We made an inventory of the products to find where different teams had built the same solution independently. Interviews with stakeholders helped us set priorities and find patterns that were obvious from the inside but not from the outside. We started with forms, search, navigation, first-time use and data visualisation.</p>
@@ -107,22 +105,19 @@
       </div>
       <p class="cs-image-caption fade">↑ Pattern definition, Forms</p>
 
-      <p class="cs-body">Forms is a good example of what a pattern contains. It starts with a definition and a few principles, like asking only for the information that is really needed. Then comes the anatomy of a form, ten elements from the description text to the action buttons, and the related components for each type of input. The best practices cover how to help people while they fill in a form, how to split a long form into steps, and when to validate: on submit by default, and on blur only for format errors that are easy to fix, once the value has changed. A separate page gives rules for error messages. They explain how to fix the problem and don't blame the user, so "Please enter your first name." instead of "Fill this field." At the end are the four ready-made forms, each for desktop and mobile.</p>
+      <p class="cs-body">The Forms pattern shows the kind of decisions a pattern holds. Most of them try to interrupt people as little as possible. Errors are checked when the form is sent, and only simple format errors are checked earlier, after the person has left the field and changed the value. The wording of error messages is part of the pattern too, since the component only provides the space for the message. The rule is to explain how to fix the problem and never blame the person filling in the form.</p>
 
       <div class="cs-phase"><p class="cs-phase-num">06</p><div class="cs-phase-body">
-        <p><strong>The landing page.</strong> The system also needed a public page to present it to the teams who had not adopted it yet. I defined the structure and the content of the page and designed it, and a visual designer took care of the final visual details. The page is built with the system's own components, so it shows the system working while it explains it.</p>
+        <p><strong>The landing page.</strong> The system also needed a public page for the teams who had not adopted it yet. I defined the structure and the content and designed the page, and a visual designer took care of the final visual details. The page is built with the system's own components, so it is also a working example of it.</p>
       </div></div>
 
       <div class="cs-story-grid fade">
-        <div class="cs-story-item"><p class="cs-story-num">01</p><p class="cs-story-title">Values</p><p class="cs-story-body">Consistency, quality of the components, a faster process and up-to-date standards</p></div>
-        <div class="cs-story-item"><p class="cs-story-num">02</p><p class="cs-story-title">Workflow</p><p class="cs-story-body">How design and development work together, and where to start: GitHub, Figma and Storybook</p></div>
-        <div class="cs-story-item"><p class="cs-story-num">03</p><p class="cs-story-title">Sustainability</p><p class="cs-story-body">Estimated savings in development time, maintenance and CO₂</p></div>
-        <div class="cs-story-item"><p class="cs-story-num">04</p><p class="cs-story-title">Stakeholders</p><p class="cs-story-body">Benefits and a quote for product owners, designers, developers and brand managers</p></div>
-        <div class="cs-story-item"><p class="cs-story-num">05</p><p class="cs-story-title">Experts</p><p class="cs-story-body">The design system team as a service: reviews, accessibility audits, testing and workshops</p></div>
-        <div class="cs-story-item"><p class="cs-story-num">06</p><p class="cs-story-title">Release notes</p><p class="cs-story-body">A link to the latest changes, so the page stays current</p></div>
+        <div class="cs-story-item"><p class="cs-story-num">01</p><p class="cs-story-title">Why before how</p><p class="cs-story-body">The page is for people who have not decided yet, so it starts with what the system gives them and only then explains how to get started.</p></div>
+        <div class="cs-story-item"><p class="cs-story-num">02</p><p class="cs-story-title">One argument per role</p><p class="cs-story-body">Product owners, designers, developers and brand managers decide about adoption for different reasons, so each of them gets their own benefits and a quote.</p></div>
+        <div class="cs-story-item"><p class="cs-story-num">03</p><p class="cs-story-title">A team behind it</p><p class="cs-story-body">The page introduces the design system team and what they offer, and links to the latest release notes. For a team that depends on the system, it matters that someone keeps looking after it.</p></div>
       </div>
 
-      <p class="cs-body" style="margin-top: 1.5rem">The sustainability section was a conscious choice. A design system is usually presented with speed and efficiency, which is a weak argument for a team that is already busy. Reusing components instead of building them again also means less code, less data transfer and less energy. The page shows estimates such as 50% faster development and 20% lower CO₂ emissions, and states that its own carbon footprint is about 95% lower than an average page of similar complexity.</p>
+      <p class="cs-body" style="margin-top: 1.5rem">I also gave sustainability its own section. Reusing components means less code to build and to load, and so less energy. It is an argument that also reaches people outside the design and development teams.</p>
 
       <div class="cs-image fade">
         <img src="assets/images/sds/sds_landing-page.png" alt="The Solid Design System public landing page">
