@@ -924,3 +924,15 @@ footer > span {
   .tc-wide { grid-column: auto; }
   .tc-arrow { transform: rotate(90deg); height: 1.25rem; }
 }
+
+/* ── WIDE SCREENS: centre the whole page ── */
+:root { --page-max: 1600px; }
+
+@media (min-width: 800px) {
+  :root { --page-gutter: max(0px, calc((100vw - var(--page-max)) / 2)); }
+  .sidebar { left: var(--page-gutter); }
+  .main {
+    margin-left: calc(var(--sidebar-w) + var(--page-gutter));
+    margin-right: var(--page-gutter);
+  }
+}
