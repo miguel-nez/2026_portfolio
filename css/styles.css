@@ -552,6 +552,8 @@ footer > span {
   color: var(--ink);
 }
 
+.cs-phase-body p + p { margin-top: 0.75rem; }
+
 .cs-phase-body strong { font-weight: 500; }
 
 /* IMAGE PLACEHOLDER */
