@@ -15,6 +15,7 @@ A static HTML/CSS portfolio site with no JavaScript framework or bundler. Five p
 **Pages:**
 - `index.html` — homepage with hero, work snippet cards, and about section
 - `ard.html`, `sds.html`, `tracker.html`, `accessibility.html` — individual case study pages
+- `404.html` — not-found page served by GitHub Pages; uses root-absolute paths (`/css/styles.css`) because it is served at any URL depth
 
 **Styles:**
 - `css/styles.css` — the only stylesheet, shared by all pages. Organised as: reset → tokens → base → sidebar → hero/tags → sections/project cards → about → footer → animations → case study layout (`.cs-*`) → responsive breakpoints
@@ -30,8 +31,8 @@ A static HTML/CSS portfolio site with no JavaScript framework or bundler. Five p
 - ≤799px: sidebar collapses to a horizontal top bar; contact links move to the page footer
 - ≤1220px: project cards stack vertically
 
-**Scroll animations:** Each page includes an inline `<script>` using `IntersectionObserver` to add the `.in` class to `.fade` elements on scroll. No external JS dependencies.
+**Scroll animations:** Each page includes an inline `<script>` using `IntersectionObserver` to add the `.in` class to `.fade` elements on scroll. No external JS dependencies. A one-line `<script>` in each `<head>` adds a `js` class to `<html>`; the hidden state is scoped to `.js .fade`, so content stays visible without JavaScript. The observer uses `threshold: 0` so sections of any height reveal.
 
 **Case study pages** share a `.cs-*` class vocabulary: `.cs-header`, `.cs-meta-row`, `.cs-section`, `.cs-body`, `.cs-image`, `.cs-findings`, `.cs-quote`, `.cs-outcomes`, `.cs-next`. Adding a new case study means copying this structure and adding a sidebar nav link in every other page.
 
-**Assets:** `assets/images/<case-study-slug>/` — one subdirectory per case study.
+**Assets:** `assets/images/<case-study-slug>/` — one subdirectory per case study. Case study images are shown uncropped and need `width`/`height` attributes on the `<img>`; keep them around 1800px wide (homepage covers 2200px, cropped to 16:9).

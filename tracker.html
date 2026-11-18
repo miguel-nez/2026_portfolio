@@ -5,6 +5,15 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="robots" content="noindex">
 <title>Dog Tracker app — Miguel Núñez</title>
+<meta name="description" content="Case study: testing, QA and adapting the concept of a GPS dog tracker app to the real hardware.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Dog Tracker app — Miguel Núñez">
+<meta property="og:description" content="Case study: testing, QA and adapting the concept of a GPS dog tracker app to the real hardware.">
+<meta property="og:url" content="https://nuneznunez.xyz/tracker.html">
+<meta property="og:image" content="https://nuneznunez.xyz/assets/images/index/tracker_cover.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<script>document.documentElement.classList.add('js')</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
@@ -32,7 +41,7 @@
   <div class="sidebar-contact">
     <a href="mailto:miguelxnxn@gmail.com">Email</a>
     <a href="https://www.linkedin.com/in/miguel-nunez-nunez/" target="_blank" rel="noopener">LinkedIn</a>
-    <a href="cv_miguel-nunez.pdf"" class="cv-link">CV</a>
+    <a href="cv_miguel-nunez.pdf" class="cv-link">CV</a>
   </div>
 </aside>
 
@@ -54,13 +63,13 @@
     </div>
 
     <div class="cs-section fade">
-      <p class="cs-section-label">Context</p>
+      <h2 class="cs-section-label">Context</h2>
       <p class="cs-body">The app accompanies a GPS tracker for dogs. Its features include the dog's live position, a virtual fence with alerts, a route history, activity tracking to support healthy habits and warnings about possible poison sources in public spaces. A live mode with guidance and resources helps owners find their dog quickly and calmly.</p>
       <p class="cs-body">I joined the project before development started, when the main concept and designs were largely in place. As with many connected devices, parts of the experience depended on hardware characteristics such as location accuracy and pairing behaviour. Some of these only became visible when testing with the physical device, so testing and iteration became a central part of my role.</p>
     </div>
 
     <div class="cs-section fade">
-      <p class="cs-section-label">Approach</p>
+      <h2 class="cs-section-label">Approach</h2>
 
       <div class="cs-phase"><p class="cs-phase-num">01</p><div class="cs-phase-body">
         <p><strong>Specification and handover.</strong> I continued the task flow documentation started by a colleague, detailed the interactions and wrote the functional descriptions used by the development team. The project followed a waterfall process, so the specification was handed over as a whole.</p>
@@ -71,7 +80,7 @@
       </div></div>
 
       <div class="cs-image fade">
-        <img src="assets/images/tracker/tracker_features.png" alt="Tracker app designs showing the route history feature, a dog profile and a geofence alarm">
+        <img src="assets/images/tracker/tracker_features.png" width="1800" height="1092" loading="lazy" decoding="async" alt="Tracker app designs showing the route history feature, a dog profile and a geofence alarm">
       </div>
       <p class="cs-image-caption fade">↑ Home screen, dog profile, virtual fence and route history features</p>
 
@@ -100,7 +109,7 @@
       </div></div>
 
       <div class="cs-image fade">
-        <img src="assets/images/tracker/tracker_bottom-card.png" alt="Enhancement concept for the expandable bottom sheet">
+        <img src="assets/images/tracker/tracker_bottom-card.png" width="1800" height="1025" loading="lazy" decoding="async" alt="Enhancement concept for the expandable bottom sheet">
       </div>
       <p class="cs-image-caption fade">↑ Snippet from the enhancement concept for the expandable bottom sheet</p>
 
@@ -112,7 +121,7 @@
     </div>
 
     <div class="cs-section fade">
-      <p class="cs-section-label">What I contributed</p>
+      <h2 class="cs-section-label">What I contributed</h2>
       <div class="cs-findings">
         <div class="cs-finding"><p class="cs-finding-label">Testing and QA</p><p>Device and app testing across the beta releases, and a structured issue reporting process.</p></div>
         <div class="cs-finding"><p class="cs-finding-label">Concept adaptation</p><p>Geofence alerts, route history and onboarding adapted to the hardware specifications.</p></div>
@@ -122,7 +131,7 @@
     </div>
 
     <div class="cs-section fade">
-      <p class="cs-section-label">Outcome</p>
+      <h2 class="cs-section-label">Outcome</h2>
       <div class="cs-outcomes">
         <div class="cs-outcome"><p class="cs-outcome-num">Testing</p><p class="cs-outcome-label">device and app across the betas</p></div>
         <div class="cs-outcome"><p class="cs-outcome-num">Calls</p><p class="cs-outcome-label">instead of email threads with the developers</p></div>
@@ -140,7 +149,7 @@
       <div class="footer-contact">
         <a href="mailto:miguelxnxn@gmail.com">Email</a>
         <a href="https://www.linkedin.com/in/miguel-nunez-nunez/" target="_blank" rel="noopener">LinkedIn</a>
-        <a href="cv_miguel-nunez.pdf"">CV</a>
+        <a href="cv_miguel-nunez.pdf">CV</a>
       </div>
       <span>Miguel Núñez · Cologne · 2026</span>
     </footer>
@@ -156,7 +165,7 @@
         obs.unobserve(e.target);
       }
     });
-  }, { threshold: 0.08 });
+  }, { threshold: 0, rootMargin: '0px 0px -40px 0px' });
 
   document.querySelectorAll('.fade').forEach(el => obs.observe(el));
 </script>

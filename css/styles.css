@@ -95,8 +95,6 @@ body {
   color: var(--ink);
 }
 
-.cv-link { font-size: 1rem }
-
 /* ── MAIN ── */
 .main { margin-left: var(--sidebar-w); }
 
@@ -127,16 +125,6 @@ body {
 }
 
 .hero-headline strong { font-weight: 500; }
-
-.hero-sub {
-  font-size: 0.875rem;
-  font-weight: 300;
-  color: var(--ink);
-  line-height: 1.7;
-  max-width: 440px;
-  margin-bottom: 1.5rem;
-  padding: 0 10px;
-}
 
 /* ── TAGS ── */
 .tags {
@@ -285,46 +273,12 @@ body {
 
 .about-intro strong { font-weight: 500; }
 
-.about-body {
-  font-size: 0.8125rem;
-  font-weight: 300;
-  color: var(--ink);
-  line-height: 1.75;
-  margin-bottom: 0.75rem;
-  padding: 0 10px;
-}
-
 .about-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 2rem;
   align-items: start;
   max-width: 1200px;
-}
-
-.why-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1px;
-  margin-top: 1.5rem;
-}
-
-.why-card { background: #fff; padding: 0.9rem 10px; }
-
-.why-card-label {
-  font-size: 0.625rem;
-  font-weight: 500;
-  letter-spacing: 0.09em;
-  text-transform: uppercase;
-  color: var(--ink);
-  margin-bottom: 5px;
-}
-
-.why-card p {
-  font-size: 0.8125rem;
-  font-weight: 300;
-  color: var(--ink);
-  line-height: 1.6;
 }
 
 /* ── FOOTER ── */
@@ -344,7 +298,7 @@ footer > span {
   white-space: nowrap;
 }
 
-/* ── FOOTER ── */
+/* contact links: hidden on desktop, shown at ≤799px */
 .footer-contact { display: none; }
 
 .footer-contact a {
@@ -367,8 +321,15 @@ footer > span {
 }
 
 /* ── ANIMATIONS ── */
-.fade { opacity: 0; transform: translateY(12px); transition: opacity 0.5s ease, transform 0.5s ease; }
-.fade.in { opacity: 1; transform: translateY(0); }
+/* Hidden state only applies when JS is running (the `js` class is set in each page's <head>),
+   so content stays visible without JavaScript. */
+.js .fade { opacity: 0; transform: translateY(12px); transition: opacity 0.5s ease, transform 0.5s ease; }
+.js .fade.in { opacity: 1; transform: translateY(0); }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .js .fade { opacity: 1; transform: none; transition: none; }
+}
 
 
 /* ── CASE STUDY ── */
@@ -531,7 +492,8 @@ footer > span {
   border-top: 1px solid #e8e8e6;
 }
 
-.cs-phase:first-of-type { border-top: none; padding-top: 0; }
+/* first phase of a section, whatever sits before it */
+.cs-phase:not(.cs-phase ~ .cs-phase) { border-top: none; padding-top: 0; }
 
 .cs-phase-num {
   font-size: 0.6875rem;
@@ -556,10 +518,9 @@ footer > span {
 
 .cs-phase-body strong { font-weight: 500; }
 
-/* IMAGE PLACEHOLDER */
+/* IMAGE — shown uncropped; width/height attributes on the <img> reserve the space */
 .cs-image {
   background: #f2f2f0;
-  aspect-ratio: 16 / 9;
   margin: 1.5rem 0;
   width: 100%;
 }
@@ -799,7 +760,7 @@ footer > span {
   .project-right { flex: none; width: 100%; }
 }
 
-/* ── MID: stack project cards, sidebar moves to top ── */
+/* ── SMALL: sidebar moves to top ── */
 @media (max-width: 799px) {
 
   /* Sidebar becomes a top bar */
@@ -810,13 +771,10 @@ footer > span {
     align-items: center;
     justify-content: space-between;
     padding: 0.75rem 4px 0;
-    border-right: none;
     overflow: visible;
   }
 
-  /* Name and role stay on top row */
   .sidebar-name { margin-bottom: 0; }
-  .sidebar-role { margin-bottom: 0; }
 
   /* Nav links run horizontally on the second row */
   .sidebar-nav {
@@ -839,30 +797,41 @@ footer > span {
 
   /* Show contact links in footer instead */
   .footer-contact { display: flex; gap: 0; }
-  .why-grid { grid-template-columns: 1fr; }
   .about-grid { grid-template-columns: 1fr; gap: 0; }
-  .cs-findings { grid-template-columns: 1fr 1fr; }
-  .project-card { flex-direction: column; }
-  .project-text { flex: none; width: 100%; }
-  .project-right { flex: none; width: 100%; }
   .project-image { min-height: 180px; aspect-ratio: unset; }
+
+  /* meta row: 2 × 2, borders only between cells */
   .cs-meta-row { flex-wrap: wrap; }
   .cs-meta-item { flex: 0 0 50%; border-bottom: 1px solid #e8e8e6; }
+  .cs-meta-item:nth-child(even) { border-right: none; }
+  .cs-meta-item:nth-last-child(-n+2) { border-bottom: none; }
+
   .cs-findings { grid-template-columns: 1fr; }
-  .cs-story-grid { grid-template-columns: 1fr 1fr; }
+  .cs-story-grid { grid-template-columns: 1fr; }
+
+  /* outcomes: two on the first row, the third spans the second */
   .cs-outcomes { flex-wrap: wrap; }
-  .cs-outcome { flex: 0 0 50%; border-bottom: 1px solid #e8e8e6; }
+  .cs-outcome { flex: 1 1 50%; border-bottom: 1px solid #e8e8e6; }
+  .cs-outcome:nth-child(even) { border-right: none; }
+  .cs-outcome:last-child { border-bottom: none; }
 }
 
+/* homepage covers: uniform 16:9 crop */
 .project-image img,
-.project-image video,
-.cs-image img,
-.cs-image video {
+.project-image video {
   display: block;
   width: 100%;
   height: 100%;
   aspect-ratio: 16 / 9;
   object-fit: cover;
+}
+
+/* case study images: full image, natural ratio */
+.cs-image img,
+.cs-image video {
+  display: block;
+  width: 100%;
+  height: auto;
 }
 
 /* ── TOOLCHAIN DIAGRAM (ARD) ── */

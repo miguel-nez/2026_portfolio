@@ -5,6 +5,15 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="robots" content="noindex">
 <title>ARD Mediathek — Miguel Núñez</title>
+<meta name="description" content="Case study: a proof of concept for ARD Mediathek testing whether AI can tag mood and consumption motivation reliably, and how to measure it.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="ARD Mediathek — Miguel Núñez">
+<meta property="og:description" content="Case study: a proof of concept for ARD Mediathek testing whether AI can tag mood and consumption motivation reliably, and how to measure it.">
+<meta property="og:url" content="https://nuneznunez.xyz/ard.html">
+<meta property="og:image" content="https://nuneznunez.xyz/assets/images/ard/ard_mood-consistency.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<script>document.documentElement.classList.add('js')</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
@@ -32,7 +41,7 @@
   <div class="sidebar-contact">
     <a href="mailto:miguelxnxn@gmail.com">Email</a>
     <a href="https://www.linkedin.com/in/miguel-nunez-nunez/" target="_blank" rel="noopener">LinkedIn</a>
-    <a href="cv_miguel-nunez.pdf"" class="cv-link">CV</a>
+    <a href="cv_miguel-nunez.pdf" class="cv-link">CV</a>
   </div>
 </aside>
 
@@ -54,7 +63,7 @@
     </div>
 
     <div class="cs-section fade">
-      <p class="cs-section-label">The problem</p>
+      <h2 class="cs-section-label">The problem</h2>
       <p class="cs-body">ARD produces more than 2,000 hours of content every day, and each video has 23 editorial metadata fields. Editorial teams fill them in by hand, next to their actual work. Each team does it a bit differently, so the quality and completeness of the metadata varies a lot.</p>
       <p class="cs-body">This has consequences on both sides. For viewers, content is harder to find and the recommendation algorithm works with weak data, which frustrates younger users in particular. For ARD, the manual work is an extra load on the editorial teams, and partner platforms with their own metadata requirements can only be served with considerable extra effort.</p>
       <p class="cs-body">Our task was a proof of concept for two of the most difficult fields, Mood and Consumption Motivation, including an analysis of whether AI tools could take over part of this work.</p>
@@ -67,14 +76,14 @@
     </div>
 
     <div class="cs-section fade">
-      <p class="cs-section-label">Making subjective categories testable</p>
+      <h2 class="cs-section-label">Making subjective categories testable</h2>
       <p class="cs-body">Mood and consumption motivation describe how a programme feels and why people watch it. There is no single correct answer, so before testing any AI we needed a structure to measure the results against. My colleague had started this work before I joined the project: 30 moods grouped into 5 clusters and 13 sub-clusters, and 27 consumption motivations based on ARD's own media research, grouped into 4 clusters with their sub-clusters. Clusters reduce the variance in the results, but they don't remove it.</p>
       <p class="cs-body">For terms that are hard to tell apart, like quirky and absurd or provocative and controversial, there was a reference document we called the Mood-Bible. It has a definition, recognition criteria and examples for every mood, and decision trees for the borderline cases.</p>
       <p class="cs-body">We also wrote down how we expected the AI to fail, and built a countermeasure into the prompt for each case. The model could add terms that are not in the list, so the rules only allow the given vocabulary. It could answer from its training data, for example from what it already knows about a famous series, so the prompt limits it to the data of the video itself. And it could invent an answer instead of showing uncertainty. For that reason every tag comes with a score, a confidence level and a justification anchored in the data, and at the end the model checks its own output against the rules.</p>
     </div>
 
     <div class="cs-section fade">
-      <p class="cs-section-label">Approach</p>
+      <h2 class="cs-section-label">Approach</h2>
 
       <div class="cs-diagram fade">
         <p class="tc-label">Toolchain 1 · indirect</p>
@@ -105,7 +114,7 @@
       </div></div>
 
       <div class="cs-image fade">
-        <img src="assets/images/broadcaster/broadcaster_prompt-snippet.png" alt="Snippet from the system prompt showing its four-step structure">
+        <img src="assets/images/ard/ard_prompt-snippet.png" width="1800" height="1022" loading="lazy" decoding="async" alt="Snippet from the system prompt showing its four-step structure">
       </div>
       <p class="cs-image-caption fade">↑ Snippet from the system prompt</p>
 
@@ -128,12 +137,12 @@
     </div>
 
     <div class="cs-section fade">
-      <p class="cs-section-label">Results</p>
+      <h2 class="cs-section-label">Results</h2>
       <p class="cs-body">Both toolchains passed the consistency criteria for all eight videos. At cluster level, the five runs agreed on mood between 68 and 92% of the time. Intensity stability was above 91% for mood and above 89% for consumption motivation, and the ranking of the shared tags was stable as well. Lower values only appeared at term level, where the AI moved between neighbouring terms inside the same cluster.</p>
       <p class="cs-body">The human panel agreed much less, between 36 and 54% at cluster level for mood. These numbers are not directly comparable, since one model repeating itself is not the same as four different people agreeing, and the panel worked without the decision trees. Still, it showed us that subjective metadata needs shared definitions and some training for the people doing it as well.</p>
 
       <div class="cs-image fade">
-        <img src="assets/images/broadcaster/broadcaster_mood-consistency.png" alt="Table of mood presence consistency scores for both AI toolchains across the eight test videos">
+        <img src="assets/images/ard/ard_mood-consistency.png" width="1800" height="1022" loading="lazy" decoding="async" alt="Table of mood presence consistency scores for both AI toolchains across the eight test videos">
       </div>
       <p class="cs-image-caption fade">↑ Mood presence consistency, AI toolchains compared across the eight test videos</p>
 
@@ -150,14 +159,14 @@
     </div>
 
     <div class="cs-section fade">
-      <p class="cs-section-label">What the client said</p>
+      <h2 class="cs-section-label">What the client said</h2>
       <p class="cs-body">After I left, the team interviewed colleagues from ARD partner management, WDR's machine learning team and WDR's metadata competence unit, and sent questions by email to ARD's programme directorate and to ZDF Streaming.</p>
       <div class="cs-quote"><p>"Wann seid ihr fertig? Ich könnte das gebrauchen."</p><p class="cs-quote-source">"When will you be done? I could use this." · Interview participant, ARD</p></div>
       <div class="cs-quote"><p>"Verschlagwortung sollte 100% autonom laufen, da kann man mit Fehlern umgehen."</p><p class="cs-quote-source">"Keyword tagging should run fully autonomously, there we can live with mistakes." · Interview participant, ARD</p></div>
     </div>
 
     <div class="cs-section fade">
-      <p class="cs-section-label">Outcome</p>
+      <h2 class="cs-section-label">Outcome</h2>
       <div class="cs-outcomes">
         <div class="cs-outcome"><p class="cs-outcome-num">80</p><p class="cs-outcome-label">AI runs analysed across 2 toolchains</p></div>
         <div class="cs-outcome"><p class="cs-outcome-num">68–92%</p><p class="cs-outcome-label">cluster consistency across five runs per video</p></div>
@@ -183,7 +192,7 @@
       <div class="footer-contact">
         <a href="mailto:miguelxnxn@gmail.com">Email</a>
         <a href="https://www.linkedin.com/in/miguel-nunez-nunez/" target="_blank" rel="noopener">LinkedIn</a>
-        <a href="cv_miguel-nunez.pdf"">CV</a>
+        <a href="cv_miguel-nunez.pdf">CV</a>
       </div>
       <span>Miguel Núñez · Cologne · 2026</span>
     </footer>
@@ -199,7 +208,7 @@
         obs.unobserve(e.target);
       }
     });
-  }, { threshold: 0.08 });
+  }, { threshold: 0, rootMargin: '0px 0px -40px 0px' });
 
   document.querySelectorAll('.fade').forEach(el => obs.observe(el));
 </script>

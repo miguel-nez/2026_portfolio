@@ -5,6 +5,15 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="robots" content="noindex">
 <title>Miguel Núñez — Product Designer</title>
+<meta name="description" content="Product designer in Cologne with over three years of agency experience, working close to the code. Case studies on AI tooling, design systems, a connected app and accessibility.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Miguel Núñez — Product Designer">
+<meta property="og:description" content="Product designer in Cologne with over three years of agency experience, working close to the code. Case studies on AI tooling, design systems, a connected app and accessibility.">
+<meta property="og:url" content="https://nuneznunez.xyz/">
+<meta property="og:image" content="https://nuneznunez.xyz/assets/images/index/tracker_cover.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<script>document.documentElement.classList.add('js')</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
@@ -24,7 +33,7 @@
   <div class="sidebar-contact">
     <a href="mailto:miguelxnxn@gmail.com">Email</a>
     <a href="https://www.linkedin.com/in/miguel-nunez-nunez/" target="_blank" rel="noopener">LinkedIn</a>
-    <a href="cv_miguel-nunez.pdf"" class="cv-link">CV</a>
+    <a href="cv_miguel-nunez.pdf" class="cv-link">CV</a>
   </div>
 </aside>
 
@@ -53,7 +62,7 @@
       <h2 class="section-title fade">Work snippets</h2>
       <div class="project-card fade">
         <div class="project-text">
-          <h2 class="project-title">ARD Mediathek / identifying moods and motivations and weighing them with AI</h2>
+          <h3 class="project-title">ARD Mediathek / identifying moods and motivations and weighing them with AI</h3>
           <ul class="highlights">
             <li>Set up and ran the Google AI Studio toolchain</li>
             <li>Defined the success metrics with a colleague and wrote a Python script to calculate them across 80 runs</li>
@@ -66,14 +75,14 @@
             <p class="project-meta">AI toolchain · proof of concept · public broadcasting</p>
           </div>
           <div class="project-image">
-            <video src="assets/images/index/gif_video-tagging.mp4" autoplay loop muted playsinline></video>
+            <video src="assets/images/index/gif_video-tagging.mp4" autoplay loop muted playsinline aria-label="Screen recording of a video being tagged with moods and motivations by the AI toolchain"></video>
           </div>
         </div>
       </div>
 
       <div class="project-card fade">
         <div class="project-text">
-          <h2 class="project-title">Solid Design System / documentation, patterns, landing page</h2>
+          <h3 class="project-title">Solid Design System / documentation, patterns, landing page</h3>
           <ul class="highlights">
             <li>Wrote the full component documentation, from use cases to accessibility requirements, in a unified structure built to scale</li>
             <li>Led the pattern research and found a middle ground with the client: flexible patterns, plus ready-made blocks for common forms</li>
@@ -86,14 +95,14 @@
             <p class="project-meta">Design system · finance · sole UX designer</p>
           </div>
           <div class="project-image">
-            <img src="assets/images/index/sds_cover.png" alt="Solid Design System landing page illustration">
+            <img src="assets/images/index/sds_cover.png" width="2200" height="1144" loading="lazy" decoding="async" alt="Solid Design System landing page illustration">
           </div>
         </div>
       </div>
 
       <div class="project-card fade">
         <div class="project-text">
-          <h2 class="project-title">Dog Tracker app / adapting to unexpected constraints and realigning the team</h2>
+          <h3 class="project-title">Dog Tracker app / adapting to unexpected constraints and realigning the team</h3>
           <ul class="highlights">
             <li>Ran the hardware and software implementation testing, improving task flows and interactions based on the results</li>
             <li>Designed the route history feature and redesigned several others around the test results and real hardware specs.</li>
@@ -106,14 +115,14 @@
             <p class="project-meta">Mobile app · interaction design · IoT</p>
           </div>
           <div class="project-image">
-            <img src="assets/images/index/tracker_cover.png" alt="Dog Tracker app mockup">
+            <img src="assets/images/index/tracker_cover.png" width="2200" height="1228" loading="lazy" decoding="async" alt="Dog Tracker app mockup">
           </div>
         </div>
       </div>
 
       <div class="project-card fade">
         <div class="project-text">
-          <h2 class="project-title">Accessibility task force / preparing an agency for the new German law</h2>
+          <h3 class="project-title">Accessibility task force / preparing an agency for the new German law</h3>
           <ul class="highlights">
             <li>Co-led a community of practice to push accessibility throughout the agency, running workshops, open rounds and consulting sessions</li>
             <li>Built a toolbox for designers, developers and project managers to apply accessibility best practices and test their products</li>
@@ -126,7 +135,7 @@
             <p class="project-meta">Internal initiative · culture change · BFSG</p>
           </div>
           <div class="project-image">
-              <img src="assets/images/index/ally_cover.png" alt="Toolbox screenshot with a checklist and a table of contents">
+              <img src="assets/images/index/ally_cover.png" width="2200" height="1385" loading="lazy" decoding="async" alt="Toolbox screenshot with a checklist and a table of contents">
           </div>
         </div>
       </div>
@@ -150,7 +159,7 @@
       <div class="footer-contact">
         <a href="mailto:miguelxnxn@gmail.com">Email</a>
         <a href="https://www.linkedin.com/in/miguel-nunez-nunez/" target="_blank" rel="noopener">LinkedIn</a>
-        <a href="cv_miguel-nunez.pdf"">CV</a>
+        <a href="cv_miguel-nunez.pdf">CV</a>
       </div>
       <span>Miguel Núñez · Cologne · 2026</span>
     </footer>
@@ -166,24 +175,26 @@
         obs.unobserve(e.target);
       }
     });
-  }, { threshold: 0.08 });
+  }, { threshold: 0, rootMargin: '0px 0px -40px 0px' });
 
   document.querySelectorAll('.fade').forEach(el => obs.observe(el));
 
   const sections = document.querySelectorAll('#work, #about');
   const navLinks = document.querySelectorAll('.sidebar-nav a');
 
-  const secObs = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        navLinks.forEach(a => a.classList.remove('active'));
-        const a = document.querySelector(`.sidebar-nav a[href="#${e.target.id}"]`);
-        if (a) a.classList.add('active');
-      }
+  const setActive = () => {
+    let current = null;
+    sections.forEach(s => {
+      if (s.getBoundingClientRect().top <= window.innerHeight * 0.4) current = s;
     });
-  }, { threshold: 0.3 });
+    const atBottom = window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 2;
+    if (atBottom) current = sections[sections.length - 1];
+    navLinks.forEach(a => a.classList.toggle('active', !!current && a.getAttribute('href') === '#' + current.id));
+  };
 
-  sections.forEach(s => secObs.observe(s));
+  window.addEventListener('scroll', setActive, { passive: true });
+  window.addEventListener('resize', setActive);
+  setActive();
 </script>
 
 </body>
